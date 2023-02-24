@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+    <a href="{{route('sinkoutyu')}}">
+                    進行中現場
+                </a>
+                <a href="{{route('personal')}}">
+                   人員リスト
+                </a>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
