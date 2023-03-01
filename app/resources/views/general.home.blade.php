@@ -3,11 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-    <a href="{{route('resource.index')}}">
+    <a href="{{route('sinkoutyu_general')}}">
                     進行中現場
                 </a>
-                <a href="{{route('personal')}}">
-                   人員リスト
+                <a href="{{route('accepts')}}">
+                  依頼受託
+                </a>
+                <a href="{{route('members')}}">
+                 会員情報
                 </a>
         <div class="col-md-8">
             <div class="card">
