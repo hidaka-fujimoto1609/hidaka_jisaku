@@ -14,4 +14,9 @@ class DisplayController extends Controller
     public function personal(){
         return view('personal');
     }
+
+    public function index(){
+        return view('home');
+    }
 }
+

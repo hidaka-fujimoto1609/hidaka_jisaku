@@ -12,11 +12,16 @@ use App\Http\Controllers\RegistrationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
 
 Auth::routes();
+
+Route::get('/',[DisplayController::class,'index']);
+
 Route::resource('resource','ResourceController');
 Route::get('/home', 'HomeController@index')->name('home');
 //管理進行中現場

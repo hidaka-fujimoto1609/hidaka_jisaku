@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Site;
-
-class ResourceController extends Controller
+class PersonalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        return view('site');
+        //
     }
 
     /**
@@ -25,11 +23,7 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        $site_list = Site::all();
-        return view('site_list',[
-            'sites'=>$site_list
-        ]);
-       //return view('site_list');
+        //
     }
 
     /**
@@ -40,23 +34,9 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //dd(1234);
-        $site = new Site;
+        $personal = new Personal;
 
-        $site->site_name = $request->site_name;
-        $site->rep_name = $request->rep_name;
-        $site->started_at = $request->started_at;
-        $site->address = $request->address;
-        $site->detail = $request->detail;
-        $site->started_time = $request->started_time;
-        $site->end_time = $request->end_time;
-
-        $site->save();
-        $site_list = Site::all()->get();
-        return view('site_list',[
-            'sites'=>$site_list
-        ]);
-        //dd(1234);;
+        $personal = 
     }
 
     /**
@@ -67,7 +47,7 @@ class ResourceController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -78,7 +58,7 @@ class ResourceController extends Controller
      */
     public function edit($id)
     {
-        //編集
+        //
     }
 
     /**

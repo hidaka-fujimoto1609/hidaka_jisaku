@@ -6,6 +6,9 @@
     <a href="{{route('resource.index')}}">
                     進行中現場
                 </a>
+                <a href="{{route('resource.create')}}">
+                    進行中現場リスト
+                </a>
                 <a href="{{route('personal')}}">
                    人員リスト
                 </a>
