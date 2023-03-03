@@ -18,5 +18,14 @@ class DisplayController extends Controller
     public function index(){
         return view('home');
     }
+
+    public function accepts(){
+
+        return view('general_accepts');
+    }
+
+    public function general(){
+        return view('general_home');
+    }
 }
 

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Personal;
+
+use App\Request;
+
 class PersonalController extends Controller
 {
     /**
@@ -23,7 +27,10 @@ class PersonalController extends Controller
      */
     public function create()
     {
-        //
+        $personal_list = Request::all()->get();
+        return view('general_accepts',[
+            'requests'=> $personal_list
+        ]);
     }
 
     /**
@@ -36,7 +43,16 @@ class PersonalController extends Controller
     {
         $personal = new Personal;
 
-        $personal = 
+        $personal->user_id = $request->user_id;
+        $personal->site_id = $request->site_id;
+        $personal->memo = $request->memo;
+       
+
+        $personal->save();
+        $personal_list = Personal::all()->get();
+        return view('general_accepts',[
+            'request'=> $personal_list
+        ]);
     }
 
     /**

@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('/',[DisplayController::class,'index']);
 
 Route::resource('resource','ResourceController');
+Route::resource('personal','PersonalController');
 Route::get('/home', 'HomeController@index')->name('home');
 //管理進行中現場
 //Route::get('/sinkoutyu',[DisplayController::class,'sinkoutyu'])->name('sinkoutyu');
@@ -40,4 +41,7 @@ Route::get('/sinkoutyu_general',[DisplayController::class,'sinkoutyu_general'])-
 Route::get('/accepts',[DisplayController::class,'accepts'])->name('accepts');
 //一般//会員情報
 Route::get('/members',[DisplayController::class,'members'])->name('members');
+
+Route::get('/general',[DisplayController::class,'general'])->name('general');
+
 

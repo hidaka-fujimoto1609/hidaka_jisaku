@@ -19,21 +19,22 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>イベント名</label>
-                        <input type="text" name="title" id="title" class="form-control" placeholder="イベント名">
-                    </div>
-                    <div class="form-group">
-                        <label>日付</label>
-                        <input type="date" name="start" id="start" class="form-control" placeholder="年/月/日">
-                    </div>
-                    <div class="form-group">
-                        <label>カラー</label><br>
-                        <input type="color" name="textColor" id="textColor" class="">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                    <button id="btn2" class="btn btn-primary">登録</button>
+                    <form action="{{route('personal')}}" method="post">
+                    @csrf
+                    <label for='site_name'>依頼者</label>
+                    <select class="form-control" id="'user_id" name="'user_id">
+                    @foreach ($users as $user)
+                    <option value="{{ $user->user_id }}">{{ $user->user_id }}</option>
+                    @endforeach
+                    </select>
+                    <label for='site_name'>現場名</label>
+                    <select class="form-control" id="'site_id" name="'site_id">
+                    @foreach ($sites as $site)
+                    <option value="{{ $site->site_id }}">{{ $site->site_id }}</option>
+                    @endforeach
+                    </select>
+                    <label for='memo' class='mt-2'>詳細</label>
+                    <textarea class='form-control' name='memo'></textarea>
                 </div>
             </form>
         </div>

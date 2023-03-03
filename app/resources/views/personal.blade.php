@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 人員リストです。
 <!--依頼フォーム-->
 <form action="{{route('personal')}}" method="post">
