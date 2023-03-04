@@ -24,6 +24,10 @@ Route::get('/',[DisplayController::class,'index']);
 
 Route::resource('resource','ResourceController');
 Route::resource('personal','PersonalController');
+Route::resource('accept','AcceptController');
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 //管理進行中現場
 //Route::get('/sinkoutyu',[DisplayController::class,'sinkoutyu'])->name('sinkoutyu');

@@ -52,7 +52,7 @@ class ResourceController extends Controller
         $site->end_time = $request->end_time;
 
         $site->save();
-        $site_list = Site::all()->get();
+        $site_list = Site::all();
         return view('site_list',[
             'sites'=>$site_list
         ]);

@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Personal;
+use App\Accept;
 
-//use App\Request;
-
-class PersonalController extends Controller
+class AcceptController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +25,10 @@ class PersonalController extends Controller
      */
     public function create()
     {
-       
+        $$accept_list = Site::all()->get();
+        return view('general_accepts',[
+            'requests'=> $personal_list
+        ]);
     }
 
     /**
@@ -38,7 +39,18 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
-        
+                $accept = new Accept;
+                
+                $accept->user_id = $request->user_id;
+                $accept->site_id = $request->site_id;
+                $accept->memo = $request->memo;
+            //
+
+                $accept->save();
+                $accept_list = Accept::all()->get();
+                return view('general_accepts',[
+                    'request'=> $accept_list
+                ]);
     }
 
     /**

@@ -6,7 +6,7 @@
     <a href="{{route('sinkoutyu_general')}}">
                     進行中現場
                 </a>
-                <a href="{{route('personal.create')}}">
+                <a href="{{route('accept.create')}}">
                   依頼受託
                 </a>
                 <a href="{{route('members')}}">
