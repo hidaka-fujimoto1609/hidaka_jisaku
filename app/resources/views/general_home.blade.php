@@ -9,7 +9,7 @@
                 <a href="{{route('accept.create')}}">
                   依頼受託
                 </a>
-                <a href="{{route('members')}}">
+                <a href="{{route('member.index')}}">
                  会員情報
                 </a>
         <div class="col-md-8">

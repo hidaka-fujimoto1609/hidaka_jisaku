@@ -8,7 +8,7 @@
     <div id='calendar'></div>
 </div>
 
-<div class="modal fade" id="testModal1" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -37,15 +37,34 @@
                             </select>
                     </div>
                     <div class="form-group">
-                    <label>現場名</label>
-                            <select name='site_name' class='form-control'>
+                    <label>開始日</label>
+                            <select name='started_at' class='form-control'>
                                 <option value='' hidden>現場名</option>
                                 @foreach($sites as $site)
-                                <option value="{{ $site['id']}}">{{ $site['site_name'] }}</option>
+                                <option value="{{ $site['id']}}">{{ $site['started_at'] }}</option>
                                 @endforeach
                             </select>
                     </div>
-                </div>
+                    <div class="form-group">
+                    <label>開始時間</label>
+                            <select name='started_at' class='form-control'>
+                                <option value='' hidden>開始時間</option>
+                                @foreach($sites as $site)
+                                <option value="{{ $site['id']}}">{{ $site['started_time'] }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <label>終了時間</label>
+                            <select name='started_at' class='form-control'>
+                                <option value='' hidden>終了時間</option>
+                                @foreach($sites as $site)
+                                <option value="{{ $site['id']}}">{{ $site['end_time'] }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <label for='memo' class='mt-2'>詳細</label>
+                        <textarea class='form-control' name='memo'></textarea>
+                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                     <button id="btn2" class="btn btn-primary">登録</button>
@@ -53,5 +72,5 @@
             </form>
         </div>
     </div>
-</div>
+
 @endsection

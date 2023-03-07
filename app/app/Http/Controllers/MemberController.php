@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Accept;
-use App\Site;
 use App\Personal;
 
-class AcceptController extends Controller
+use Illuminate\Support\Facades\Auth;
+
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class AcceptController extends Controller
      */
     public function index()
     {
-        //
+        return view('general_members');
     }
 
     /**
@@ -27,10 +27,7 @@ class AcceptController extends Controller
      */
     public function create()
     {
-        $accept_list = Site::all()->get();
-        return view('general_accepts',[
-            'requests'=> $accept_list
-        ]);
+        //
     }
 
     /**
@@ -41,7 +38,20 @@ class AcceptController extends Controller
      */
     public function store(Request $request)
     {
-                
+        $dir = 'images';
+        $file_name = $request->file('image_path')->getClientOriginalName();
+        $request->file('image_path')->storeAs('public/' , $file_name);
+       
+        $personal = new Personal;
+        $personal->user_id = 1;
+        $personal->birth = $request->birth;
+        $personal->department_name = $request->department_name;
+        $personal->health_check_date = $request->health_check_date;
+        $personal->contents = $request->contents;
+        $personal->image_path = $file_name;
+
+        $personal->save();
+        return redirect('/');
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\RegistrationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,7 @@ Route::get('/',[DisplayController::class,'index']);
 Route::resource('resource','ResourceController');
 Route::resource('personal','PersonalController');
 Route::resource('accept','AcceptController');
-
+Route::resource('member','MemberController');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -34,8 +35,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/sinkoutyu',[DisplayController::class,'sinkoutyu']);
 
 //管理人員
-Route::get('/personal',[DisplayController::class,'personal'])->name('personal');
-Route::post('/personal',[DisplayController::class,'personal']);
+// Route::get('/personal',[DisplayController::class,'personal'])->name('personal');
+// Route::post('/personal',[DisplayController::class,'personal']);
 
 
 //一般用
@@ -49,3 +50,4 @@ Route::get('/members',[DisplayController::class,'members'])->name('members');
 Route::get('/general',[DisplayController::class,'general'])->name('general');
 
 
+?>

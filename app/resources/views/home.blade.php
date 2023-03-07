@@ -9,7 +9,7 @@
                 <a href="{{route('resource.create')}}">
                     進行中現場リスト
                 </a>
-                <a href="{{route('personal')}}">
+                <a href="{{route('personal.index')}}">
                    人員リスト
                 </a>
         <div class="col-md-8">

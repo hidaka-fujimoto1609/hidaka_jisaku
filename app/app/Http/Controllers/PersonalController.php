@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Personal;
 
+use App\Site;
+
+use App\Accept;
+
 //use App\Request;
 
 class PersonalController extends Controller
@@ -17,7 +21,11 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        //
+
+        $site_list = Site::all();
+        return view('personal',[
+            'sites'=>$site_list
+        ]);
     }
 
     /**
@@ -27,7 +35,10 @@ class PersonalController extends Controller
      */
     public function create()
     {
-       
+        $site_list = Site::all();
+        return view('pesonarl',[
+            'sites'=>$site_list
+        ]);
     }
 
     /**
@@ -38,7 +49,21 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
+        $site = new Site;
+
+        $site->site_name = $request->site_name;
+        $site->rep_name = $request->rep_name;
+        $site->started_at = $request->started_at;
+        $site->address = $request->address;
+        $site->started_time = $request->started_time;
+        $site->end_time = $request->end_time;
         
+
+        $site->save();
+       
+        
+        
+        return redirect('/');
     }
 
     /**
@@ -86,3 +111,4 @@ class PersonalController extends Controller
         //
     }
 }
+?>

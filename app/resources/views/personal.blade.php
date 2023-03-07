@@ -1,21 +1,76 @@
 @extends('layouts.app')
 @section('content')
-人員リストです。
-<!--依頼フォーム-->
-<form action="{{route('personal')}}" method="post">
-@csrf
-<label for='site_name'>依頼者</label>
-<select class="form-control" id="'user_id" name="'user_id">
-@foreach ($users as $user)
-<option value="{{ $user->user_id }}">{{ $user->user_id }}</option>
-@endforeach
-</select>
-<label for='site_name'>現場名</label>
-<select class="form-control" id="'site_id" name="'site_id">
-@foreach ($sites as $site)
-<option value="{{ $site->site_id }}">{{ $site->site_id }}</option>
-@endforeach
-</select>
-<label for='memo' class='mt-2'>詳細</label>
-<textarea class='form-control' name='memo'></textarea>
+<div class="d-flex justify-content-center">
+    <h4 class="mx-2">依頼追加</h4>
+    <button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button>
+</div>
+<div class="d-flex justify-content-center">
+    <div id='calendar'></div>
+</div>
+
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">依頼追加</h5>
+            </div>
+
+            <form action="{{route('personal.store')}}" method="post">
+               
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                    <label>担当者名</label>
+                            <select name='rep_name' class='form-control'>
+                                <option value='' hidden>担当者名</option>
+                                @foreach($sites as $site)
+                                <option value="{{ $site['id']}}">{{ $site['rep_name'] }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group">
+                    <label>現場名</label>
+                            <select name='site_name' class='form-control'>
+                                <option value='' hidden>現場名</option>
+                                @foreach($sites as $site)
+                                <option value="{{ $site['id']}}">{{ $site['site_name'] }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group">
+                    <label>開始日</label>
+                            <select name='started_at' class='form-control'>
+                                <option value='' hidden>現場名</option>
+                                @foreach($sites as $site)
+                                <option value="{{ $site['id']}}">{{ $site['started_at'] }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <div class="form-group">
+                    <label>開始時間</label>
+                            <select name='started_at' class='form-control'>
+                                <option value='' hidden>開始時間</option>
+                                @foreach($sites as $site)
+                                <option value="{{ $site['id']}}">{{ $site['started_time'] }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    <label>終了時間</label>
+                            <select name='started_at' class='form-control'>
+                                <option value='' hidden>終了時間</option>
+                                @foreach($sites as $site)
+                                <option value="{{ $site['id']}}">{{ $site['end_time'] }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    
+                    <div class='row justify-content-center'>
+<button class='btn btn-primary w-25 mt-3'>登録</button>
+</div>
+                
+                </div>
+            </form>
+        </div>
+    </div>
+
 @endsection

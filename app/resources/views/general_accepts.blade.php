@@ -21,21 +21,21 @@
              </tr>
          </thead>
          <tbody>
-         @foreach( $requests as $request)
+         @foreach( $sites as $site)
              <tr>
-                <td>{{$request['rep_name']}}</td>
+                <td>{{$site['rep_name']}}</td>
                 
-                <td>{{$request->site->site_name}}</td>
+                <td>{{$site['site_name']}}</td>
                
-                <td>{{$request['started_at']}}</td>
+                <td>{{$site['started_at']}}</td>
 
-                <td>{{$request['address']}}</td>
+                <td>{{$site['address']}}</td>
 
-                <td>{{$request['started_time']}}</td>
+                <td>{{$site['started_time']}}</td>
 
-                <td>{{$request['end_time']}}</td>
+                <td>{{$site['end_time']}}</td>
 
-                <td>{{$request['memo']}}</td>
+                <td>{{$site['memo']}}</td>
                 
                 <td><a href="" class="text-decoration-none"></a>
                 /
