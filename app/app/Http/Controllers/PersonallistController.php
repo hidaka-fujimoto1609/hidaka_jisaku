@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Personal;
 
-use Illuminate\Support\Facades\Auth;
-
-class MemberController extends Controller
+class PersonallistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,10 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('general_members');
+        $personal_list = Personal::all();
+       return view('personal_list',[
+        'personals' => $personal_list
+       ]);
     }
 
     /**
@@ -27,7 +28,11 @@ class MemberController extends Controller
      */
     public function create()
     {
-        
+        $personal_list = Personal::all();
+        dd($personal_list);
+        return view('personal_list',[
+           'personals' => $personal_list
+        ]);
     }
 
     /**
@@ -38,20 +43,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $dir = 'images';
-        $file_name = $request->file('image_path')->getClientOriginalName();
-        $request->file('image_path')->storeAs('public/images' , $file_name);
-       
-        $personal = new Personal;
-        $personal->user_id = 1;
-        $personal->birth = $request->birth;
-        $personal->department_name = $request->department_name;
-        $personal->health_check_date = $request->health_check_date;
-        $personal->contents = $request->contents;
-        $personal->image_path = $file_name;
-
-        $personal->save();
-        return redirect('/');
+        //
     }
 
     /**

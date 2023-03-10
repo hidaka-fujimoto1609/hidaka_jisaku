@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
 use App\Personal;
 
-use Illuminate\Support\Facades\Auth;
-
-class MemberController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('general_members');
+        //
     }
 
     /**
@@ -27,7 +27,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -38,20 +38,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $dir = 'images';
-        $file_name = $request->file('image_path')->getClientOriginalName();
-        $request->file('image_path')->storeAs('public/images' , $file_name);
-       
-        $personal = new Personal;
-        $personal->user_id = 1;
-        $personal->birth = $request->birth;
-        $personal->department_name = $request->department_name;
-        $personal->health_check_date = $request->health_check_date;
-        $personal->contents = $request->contents;
-        $personal->image_path = $file_name;
-
-        $personal->save();
-        return redirect('/');
+        //
     }
 
     /**

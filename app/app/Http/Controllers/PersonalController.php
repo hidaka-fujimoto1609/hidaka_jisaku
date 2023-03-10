@@ -10,7 +10,6 @@ use App\Site;
 
 use App\Accept;
 
-//use App\Request;
 
 class PersonalController extends Controller
 {
@@ -49,17 +48,23 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
-        $site = new Site;
+        $accept = new Accept;
+        //acceptカラムに必要なのか
+        //useriｄは１をいれる
+        $accept->user_id = 1;
+        $accept->site_id;
+        $accept->memo =  $request->memo;
 
-        $site->site_name = $request->site_name;
-        $site->rep_name = $request->rep_name;
-        $site->started_at = $request->started_at;
-        $site->address = $request->address;
-        $site->started_time = $request->started_time;
-        $site->end_time = $request->end_time;
+        // $site->site_name = $request->site_name;
+        // $site->rep_name = $request->rep_name;
+        // $site->started_at = $request->started_at;
+        // $site->address = $request->address;
+        // $site->detail = $request->detail;
+        // $site->started_time = $request->started_time;
+        // $site->end_time = $request->end_time;
         
 
-        $site->save();
+        $accept->save();
        
         
         

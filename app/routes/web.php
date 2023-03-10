@@ -27,7 +27,7 @@ Route::resource('resource','ResourceController');
 Route::resource('personal','PersonalController');
 Route::resource('accept','AcceptController');
 Route::resource('member','MemberController');
-
+Route::resource('personallist','PersonallistController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 //管理進行中現場

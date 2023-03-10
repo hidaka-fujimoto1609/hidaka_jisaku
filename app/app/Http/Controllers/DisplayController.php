@@ -27,5 +27,7 @@ class DisplayController extends Controller
     public function general(){
         return view('general_home');
     }
+
+     
 }
 

@@ -12,6 +12,8 @@
                 <a href="{{route('personal.index')}}">
                    人員リスト
                 </a>
+                <a href="{{route('personallist.index')}}">
+                   人員
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>

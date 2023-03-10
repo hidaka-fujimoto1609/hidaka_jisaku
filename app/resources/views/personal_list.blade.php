@@ -1,76 +1,55 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-center">
-    <h4 class="mx-2">依頼追加</h4>
-    <button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button>
-</div>
-<div class="d-flex justify-content-center">
-    <div id='calendar'></div>
-</div>
-
-
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">依頼追加</h5>
-            </div>
-
-            <form action="{{route('accept.store')}}" method="post">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                    <label>担当者名</label>
-                            <select name='rep_name' class='form-control'>
-                                <option value='' hidden>担当者名</option>
-                                @foreach($sites as $site)
-                                <option value="{{ $site['id']}}">{{ $site['rep_name'] }}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                    <div class="form-group">
-                    <label>現場名</label>
-                            <select name='site_name' class='form-control'>
-                                <option value='' hidden>現場名</option>
-                                @foreach($sites as $site)
-                                <option value="{{ $site['id']}}">{{ $site['site_name'] }}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                    <div class="form-group">
-                    <label>開始日</label>
-                            <select name='started_at' class='form-control'>
-                                <option value='' hidden>現場名</option>
-                                @foreach($sites as $site)
-                                <option value="{{ $site['id']}}">{{ $site['started_at'] }}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                    <div class="form-group">
-                    <label>開始時間</label>
-                            <select name='started_at' class='form-control'>
-                                <option value='' hidden>開始時間</option>
-                                @foreach($sites as $site)
-                                <option value="{{ $site['id']}}">{{ $site['started_time'] }}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                    <label>終了時間</label>
-                            <select name='started_at' class='form-control'>
-                                <option value='' hidden>終了時間</option>
-                                @foreach($sites as $site)
-                                <option value="{{ $site['id']}}">{{ $site['end_time'] }}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                    <label for='memo' class='mt-2'>詳細</label>
-                        <textarea class='form-control' name='memo'></textarea>
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                    <button id="btn2" class="btn btn-primary">登録</button>
-                </div>
-            </form>
-        </div>
+<form method="GET" action="{{ route('serch.index') }}">
+    <input type="search" placeholder="担当部署を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
+    <div>
+        <button type="submit">検索</button>
+        <button>
+            <a href="{{ route('serch.index') }}" class="text-white">
+                クリア
+            </a>
+        </button>
     </div>
+</form>
+<div class="d-flex justify-content-center">
+    <h4 class="gradation02 mb-5">人員リスト</h4>
+</div>
+<div class="d-flex justify-content-center">
+ <div class="col-5 ml-3">
+     <table class="table table-striped table-hover">
+         <thead>
+             <tr>
+                 <th>名前</th>
+                 <th>生年月日</th>
+                 <th>所属部署</th>
+                 <th>健康診断日</th>
+                 <th>資格、歴</th>
+                 <th>所有免許等画像</th>
+             </tr>
+         </thead>
+         <tbody>
+         @foreach($personals as $personal)
+             <tr>
+                <td>{{$personal['user_neme']}}</td>
+                
+                <td>{{$personal['birth']}}</td>
+               
+                <td>{{$personal['department_name']}}</td>
 
+                <td>{{$personal['health_check_date']}}</td>
+
+                <td>{{$personal['contents']}}</td>
+
+                <td><img src="{{asset('storage/images/'.$personal['image_path'])}}" width ="130" hitght="60" alt="personal"> </td>
+                
+                <td><a href="" class="text-decoration-none">削除</a>
+                /
+                <a href="" class="text-decoration-none">編集</a></td>
+            </tr>
+            
+            @endforeach
+         </tbody>
+     </table>
+ </div>
+</div>
 @endsection
