@@ -11,15 +11,18 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/modal.js') }}" defer></script>
     <!-- Styles bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://kit.fontawesome.com/67fc42cf07.css" crossorigin="anonymous">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href='{{ asset('fullcalendar-5.9.0/lib/main.css') }}' rel='stylesheet' />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
 </head>
 <body>
     
@@ -39,6 +42,9 @@
 
                     </ul>
 
+                    
+                    
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -51,6 +57,10 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('admin_register') }}">管理者新規登録</a>
+                                </li>
+
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -71,6 +81,10 @@
                                 </div>
                             </li>
                         @endguest
+
+                        <button type="button" class="btn btn-outline-primary" ><a href="{{route('personallist.index')}}">人員</a></button>
+
+                    <button type="button" class="btn btn-outline-primary" ><a href="{{route('resource.create')}}">進行中現場リスト</a></button>
                     </ul>
                 </div>
             </div>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Personal;
 
+use App\Site;
+
 class PersonallistController extends Controller
 {
     /**
@@ -16,8 +18,11 @@ class PersonallistController extends Controller
     public function index()
     {
         $personal_list = Personal::all();
+        $site_list = Site::all();
        return view('personal_list',[
-        'personals' => $personal_list
+        'personals' => $personal_list,
+        'sites' => $site_list
+        
        ]);
     }
 

@@ -48,11 +48,12 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->site_id);
         $accept = new Accept;
         //acceptカラムに必要なのか
         //useriｄは１をいれる
         $accept->user_id = 1;
-        $accept->site_id;
+        $accept->site_id = $request->site_id;
         $accept->memo =  $request->memo;
 
         // $site->site_name = $request->site_name;

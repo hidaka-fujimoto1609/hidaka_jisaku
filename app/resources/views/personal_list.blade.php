@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<form method="GET" action="{{ route('serch.index') }}">
+<form method="get" action="{{ route('search.index') }}">
     <input type="search" placeholder="担当部署を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
-    <div>
-        <button type="submit">検索</button>
-        <button>
-            <a href="{{ route('serch.index') }}" class="text-white">
-                クリア
-            </a>
-        </button>
-    </div>
+   
+        <button type="submit">検索</button> 
 </form>
+
+
+
+
+
+
 <div class="d-flex justify-content-center">
     <h4 class="gradation02 mb-5">人員リスト</h4>
 </div>
@@ -30,7 +30,7 @@
          <tbody>
          @foreach($personals as $personal)
              <tr>
-                <td>{{$personal['user_neme']}}</td>
+                <td>{{$personal->user->name}}</td>
                 
                 <td>{{$personal['birth']}}</td>
                
@@ -42,14 +42,51 @@
 
                 <td><img src="{{asset('storage/images/'.$personal['image_path'])}}" width ="130" hitght="60" alt="personal"> </td>
                 
-                <td><a href="" class="text-decoration-none">削除</a>
-                /
-                <a href="" class="text-decoration-none">編集</a></td>
+                <td><a href=""id="request" class="text-decoration-none">依頼</a></td>
             </tr>
             
             @endforeach
+
          </tbody>
      </table>
+
+
+<div class="modal fade" id="requestModal1" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">シフト依頼</h5>
+            </div>
+
+            <form action="{{route('personal.store')}}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                    <label>現場名</label>
+                            <select name='site_id' class='form-control'>
+                                <label>現場名</label>
+                                @foreach($sites as $site)
+                                <option value="{{$site['id']}}">{{ $site['site_name']}}</option>
+                                
+                                @endforeach
+                            </select>
+                            @foreach($sites as $site)
+                            <label>日時:{{$site['started_at']}}</label>
+                            @endforeach
+                        </div>
+                    <div class="form-group">
+                        <label for='memo' class='mt-2'>備考欄</label>
+                        <textarea class='form-control' name='memo'></textarea>
+                    </div>                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    <button id="request2" class="btn btn-primary">依頼</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
  </div>
 </div>
 @endsection

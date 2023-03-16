@@ -21,15 +21,33 @@ use App\Http\Controllers\RegistrationController;
 
 Auth::routes();
 
-Route::get('/',[DisplayController::class,'index']);
+Route::get('admin_register',function(){
+    return view('admin_register');
+});
+Route::group(['middleware' => 'auth','can:admin_only'], function () {
+    Route::get('/',[DisplayController::class,'index']);
+});
+
+Route::group(['middleware' => 'auth', 'can:user_only'], function () {
+    Route::get('/',[DisplayController::class,'index']);
+    
+});
+
+
+//Route::get('/',[DisplayController::class,'index']);
 
 Route::resource('resource','ResourceController');
 Route::resource('personal','PersonalController');
 Route::resource('accept','AcceptController');
 Route::resource('member','MemberController');
 Route::resource('personallist','PersonallistController');
+Route::resource('search','SearchController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+//Route::get('/home', 'HomeController@index')->name('home');
 //管理進行中現場
 //Route::get('/sinkoutyu',[DisplayController::class,'sinkoutyu'])->name('sinkoutyu');
 Route::post('/sinkoutyu',[DisplayController::class,'sinkoutyu']);
