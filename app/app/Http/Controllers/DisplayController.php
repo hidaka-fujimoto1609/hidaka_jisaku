@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Personal;
+
+use App\Site;
+
+
+
 class DisplayController extends Controller
 {
     public function sinkoutyu(){

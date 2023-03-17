@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="d-flex justify-content-center">
+<!--<div class="d-flex justify-content-center">
     <h4 class="mx-2">現場を登録</h4>
     <button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button>
-</div>
+</div>-->
 <div class="modal fade" id="testModal1" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -12,6 +12,7 @@
                 <h5 class="modal-title">現場を登録</h5>
             </div>
 
+            
             <form action="{{route('resource.store')}}" method="post">
                 @csrf
                 <div class="modal-body">
@@ -64,10 +65,15 @@
     })
 </script>
 
+
+
 </table>
 <div class="d-flex justify-content-center">
     <h4 class="gradation02 mb-5">現場一覧</h4>
 </div>
+
+<button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button>
+
 <div class="d-flex justify-content-center">
  <div class="col-5 ml-3">
      <table class="table table-striped table-hover">

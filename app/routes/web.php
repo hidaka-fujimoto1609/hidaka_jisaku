@@ -42,6 +42,10 @@ Route::resource('accept','AcceptController');
 Route::resource('member','MemberController');
 Route::resource('personallist','PersonallistController');
 Route::resource('search','SearchController');
+Route::resource('calendar','CalendarController');
+
+
+Route::get('/api','ApiTestController@test');
 
 
 
