@@ -8,6 +8,10 @@ use App\Personal;
 
 use App\Site;
 
+use App\Accept;
+
+use Illuminate\Support\Facades\Auth;
+
 
 
 class DisplayController extends Controller
@@ -22,7 +26,11 @@ class DisplayController extends Controller
     }
 
     public function index(){
-        return view('home');
+        $accept = Accept::select('title','start','textColor')->where('user_id',Auth::id())->get();//is_accept
+        //dd($accept);
+        return view('home',[
+            'accepts' => $accept,
+        ]);
     }
 
     public function accepts(){

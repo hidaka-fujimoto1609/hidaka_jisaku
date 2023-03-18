@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin_app')
 @section('content')
 @can ('admin_only')
   <span>管理者にだけ表示させる</span>
@@ -66,10 +66,12 @@
             <div class="m-auto w-100 m-5 p-5">
                 <div id='calendar1'></div>
         <script>
+            let events = <?php echo $accepts;?>;
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar1');//要素を取得
                 var calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'dayGridMonth'  //イベントクリック、日付クリックモーダル
+                    //initialView: 'dayGridMonth',  //イベントクリック、日付クリックモーダル
+                    events:events,      
                 });
                 calendar.render();//実行
             });

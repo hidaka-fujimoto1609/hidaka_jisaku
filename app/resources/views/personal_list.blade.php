@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin_app')
 @section('content')
 <form method="get" action="{{ route('search.index') }}">
     <input type="search" placeholder="担当部署を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
@@ -66,13 +66,10 @@
                             <select name='site_id' class='form-control'>
                                 <label>現場名</label>
                                 @foreach($sites as $site)
-                                <option value="{{$site['id']}}">{{ $site['site_name']}}</option>
+                                <option value="{{$site['id']}}">現場名:{{ $site['site_name']}},開始日:{{ $site['started_at']}}</option>
                                 
                                 @endforeach
                             </select>
-                            @foreach($sites as $site)
-                            <label>日時:{{$site['started_at']}}</label>
-                            @endforeach
                         </div>
                     <div class="form-group">
                         <label for='memo' class='mt-2'>備考欄</label>

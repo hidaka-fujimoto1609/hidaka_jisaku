@@ -48,14 +48,19 @@ class PersonalController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->site_id);
+       
         $accept = new Accept;
+
+        $site = Site::where('id',$request->site_id)->first();
         //acceptカラムに必要なのか
         //useriｄは１をいれる
-        $accept->user_id = 1;
+        //dd($site->site_name);
+        $accept->user_id = 2;
         $accept->site_id = $request->site_id;
         $accept->memo =  $request->memo;
-
+        $accept->title = $site->site_name;
+        $accept->start = $site->started_at;
+        $accept->textColor = '#47e160';
         // $site->site_name = $request->site_name;
         // $site->rep_name = $request->rep_name;
         // $site->started_at = $request->started_at;

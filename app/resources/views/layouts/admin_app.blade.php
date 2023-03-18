@@ -84,8 +84,8 @@
 
                         
 
-                    <!--<button type="button" class="btn btn-outline-primary" style="margin-rigth:30rem"><a href="{{route('resource.create')}}">進行中現場リスト</a></button>
-                    <button type="button" class="btn btn-outline-primary" ><a href="{{route('personallist.index')}}">人員</a></button>-->
+                    <button type="button" class="btn btn-outline-primary" style="margin-rigth:30rem"><a href="{{route('resource.create')}}">進行中現場リスト</a></button>
+                    <button type="button" class="btn btn-outline-primary" ><a href="{{route('personallist.index')}}">人員</a></button>
                     </ul>
                 </div>
             </div>
