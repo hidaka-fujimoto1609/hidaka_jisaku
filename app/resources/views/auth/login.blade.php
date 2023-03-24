@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header" style='text-center'>{{ __('ログイン') }}</div>
+                <div class="card-header" >{{ __('ログイン') }}</div>
 
-                <div class="card-body">
+                <div class="card-body bg-secondary">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Eメール') }}</label>
+                            <label for="email" class="col-md-4 col-form-label  text-md-right  ">{{ __('Eメール') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -70,4 +70,11 @@
         </div>
     </div>
 </div>
+
+<style>
+    .card-header{
+    background:;-webkit-linear-gradient(left, #ff26fb, #00b3ff);
+    cursor: pointer;
+    }
+</style>
 @endsection

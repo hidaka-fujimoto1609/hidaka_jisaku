@@ -1,4 +1,4 @@
-@extends('layouts.admin_app')
+@extends('layouts.admin_home')
 @section('content')
 
 <!--<div class="d-flex justify-content-center">
@@ -68,11 +68,10 @@
 
 
 </table>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center ">
     <h4 class="gradation02 mb-5">現場一覧</h4>
 </div>
 
-<button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button>
 
 <div class="d-flex justify-content-center">
  <div class="col-5 ml-3">
@@ -86,6 +85,7 @@
                  <th>開始時間</th>
                  <th>終了時間</th>
                  <th>詳細</th>
+                 <th><button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button></th>
              </tr>
          </thead>
          <tbody>
@@ -105,27 +105,76 @@
 
                 <td>{{$site['detail']}}</td>
                 
-                <td><a href="" class="text-decoration-none">削除</a>
-                /
-                <a href="" class="text-decoration-none">編集</a></td>
+                <td><form action="{{route('resource.destroy', $site->id)}}" method="post" >
+            @csrf
+            @method('delete')
+            <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("削除しますか？");'>
+        </form>
+                <div class="sitemodal">
+                    <button  class="btn btn-primary mb-12" >編集</button>
+                <div class="modal fade" id="detailModal1" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">現場を編集</h5>
+                                <form action="{{route('resource.update',$site->id)}}" method="post">
+                                    @method('patch')
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for='site_name'>現場名</label>
+                                        <input type='text' class='form-control' value="{{$site['site_name']}}"  name='site_name'  value="{{ old('site_name')}}"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for='rep_name'>担当者名</label>
+                                        <input type='text' class='form-control'value="{{$site['rep_name']}}"  name='rep_name'  value="{{ old('rep_name')}}"/>
+                                    </div>
+                                    <div class="form-group">
+                                            <label for='date' class='mt-2'>日付</label>
+                                            <input type='date' class='form-control'value="{{$site['started_at']}}"  name='started_at' id='started_at'  value="{{ old('started_at')}}"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label for='date' class='mt-2'>住所</label>
+                                            <input type='text' class='form-control'value="{{$site['address']}}"  name='address' value="{{ old('address')}}"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label for='started_time'>開始時間</label>
+                                            <input type='time' class='form-control'value="{{$site['started_time']}}"  name='started_time'  value="{{ old('started_time')}}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for='end_time'>終了時間</label>
+                                        <input type='time' class='form-control' value="{{$site['end_time']}}"  name='end_time'  value="{{ old('end_time')}}"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for='detail' class='mt-2'>現場詳細</label>
+                                        <textarea class='form-control'value="{{$site['detail']}}"  name='detail'></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                    <button id="btn3" class="btn btn-primary">編集完了</button>
+                                </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            </td>
             </tr>
             @endforeach
          </tbody>
      </table>
  </div>
 </div>
+
+
+
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -44,8 +44,8 @@ Route::resource('personallist','PersonallistController');
 Route::resource('search','SearchController');
 Route::resource('calendar','CalendarController');
 
-
-Route::get('/api','ApiTestController@test');
+Route::post('/site_list/{id}',[DisplayController::class,'deletesite']);
+Route::post('/api','ApiTestController@test')->name('google_api');
 
 
 

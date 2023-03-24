@@ -54,8 +54,9 @@ class PersonalController extends Controller
         $site = Site::where('id',$request->site_id)->first();
         //acceptカラムに必要なのか
         //useriｄは１をいれる
-        //dd($site->site_name);
-        $accept->user_id = 2;
+       
+        //dd($request->id);
+        $accept->user_id = $request->id;
         $accept->site_id = $request->site_id;
         $accept->memo =  $request->memo;
         $accept->title = $site->site_name;
@@ -69,7 +70,6 @@ class PersonalController extends Controller
         // $site->started_time = $request->started_time;
         // $site->end_time = $request->end_time;
         
-
         $accept->save();
        
         

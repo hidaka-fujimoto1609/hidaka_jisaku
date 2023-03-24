@@ -78,7 +78,9 @@ class ResourceController extends Controller
      */
     public function edit($id)
     {
-        //編集
+        
+
+
     }
 
     /**
@@ -90,7 +92,24 @@ class ResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $list = new Site;
+        $site = $list->find($id);
+        //dd($id);
+        // $columns = ['site_name','rep_name','started_at','address','detail','started_time','end_time'];
+        // foreach($columns as $column){
+        //     $list->$column = $request->$column;
+        // }
+        $site->id = $request->id;
+        $site->site_name = $request->site_name;
+        $site->rep_name = $request->rep_name;
+        $site->started_at = $request->started_at;
+        $site->address = $request->address;
+        $site->detail = $request->detail;
+        $site->started_time = $request->started_time;
+        $site->end_time = $request->end_time;
+
+        $site->save();
+        return redirect('resource/create');
     }
 
     /**
@@ -101,6 +120,9 @@ class ResourceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $site = Site::find($id);
+
+        $site->delete();
+        return redirect('resource/create');
     }
 }

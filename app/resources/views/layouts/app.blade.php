@@ -81,7 +81,7 @@
                                 </div>
                             </li>
                         @endguest
-
+                        <button class='btn1'  type="button"   onclick="location.href='{{route('member.index')}}'"> 依頼受託</button>
                         
 
                     <!--<button type="button" class="btn btn-outline-primary" style="margin-rigth:30rem"><a href="{{route('resource.create')}}">進行中現場リスト</a></button>

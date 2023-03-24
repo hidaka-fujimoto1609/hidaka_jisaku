@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Accept;
 use App\Site;
 use App\Personal;
+use Illuminate\Support\Facades\Auth;
+
 
 class AcceptController extends Controller
 {
@@ -27,10 +29,21 @@ class AcceptController extends Controller
      */
     public function create()
     {
-        $accept_list = Site::all()->get();
-        return view('general_accepts',[
-            'requests'=> $accept_list
-        ]);
+        $accept = new Accept;
+        $accept_with_site = $accept->with('site')->where('user_id',Auth::id())->get();
+        //dd($accept_with_site);
+
+    //    if($accept_with_site->is_accept==null){
+    //     return view('general_accepts',[
+    //         'requests'=> $accept_with_site
+    //     ]);
+    //    }else{
+    //     return view('general_accepts');
+    //    }
+       return view('general_accepts',[
+        'requests'=> $accept_with_site
+    ]);
+        
     }
 
     /**
@@ -52,7 +65,7 @@ class AcceptController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

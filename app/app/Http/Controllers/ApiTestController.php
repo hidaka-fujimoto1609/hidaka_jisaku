@@ -6,10 +6,19 @@ use Google_Client;
 use Google_Service_Calendar;
 use Google_Service_Calendar_Event;
 
+use App\Site;
+
+use Illuminate\Http\Request;
+
 class ApiTestController extends Controller
 {
-    public function test()
+    public function test(Request $request)
     {
+        $site = Site::where('site_name',$request->title)->first();
+        //dd($site);
+        $summary = $site->site_name;
+        $date = $site->started_at;
+
         $client = $this->getClient();
         $service = new Google_Service_Calendar($client);
 
@@ -17,21 +26,21 @@ class ApiTestController extends Controller
 
         $event = new Google_Service_Calendar_Event(array(
             //タイトル
-            'summary' => 'テスト',
+            'summary' => $summary,
             'start' => array(
                 // 開始日時
-                'dateTime' => '2020-08-23T11:00:00+09:00',
+                'dateTime' =>$date.'T11:00:00+09:00',
                 'timeZone' => 'Asia/Tokyo',
             ),
             'end' => array(
                 // 終了日時
-                'dateTime' => '2020-08-23T12:00:00+09:00',
+                'dateTime' =>$date.'T11:00:00+09:00',
                 'timeZone' => 'Asia/Tokyo',
             ),
         ));
 
         $event = $service->events->insert($calendarId, $event);
-        echo "イベントを追加しました";
+       return redirect('/');
     }
 
     private function getClient()
