@@ -37,7 +37,9 @@ Route::group(['middleware' => 'auth', 'can:user_only'], function () {
 //Route::get('/',[DisplayController::class,'index']);
 
 Route::resource('resource','ResourceController');
+
 Route::resource('personal','PersonalController');
+
 Route::resource('accept','AcceptController');
 Route::resource('member','MemberController');
 Route::resource('personallist','PersonallistController');
@@ -47,7 +49,11 @@ Route::resource('calendar','CalendarController');
 Route::post('/site_list/{id}',[DisplayController::class,'deletesite']);
 Route::post('/api','ApiTestController@test')->name('google_api');
 
+Route::get('/acceptssite/{id}',[DisplayController::class,'acceptssite'])->name('acceptssite');
 
+Route::get('/rejected/{id}',[DisplayController::class,'rejected'])->name('rejected');
+
+Route::get('/acceptmember',[DisplayController::class,'acceptmember'])->name('acceptmember');
 
 
 

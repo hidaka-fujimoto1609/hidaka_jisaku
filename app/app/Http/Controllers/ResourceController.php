@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Site;
+use App\Http\Requests\SiteData;
 
 class ResourceController extends Controller
 {
@@ -38,7 +39,7 @@ class ResourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SiteData $request)
     {
         //dd(1234);
         $site = new Site;
@@ -50,7 +51,9 @@ class ResourceController extends Controller
         $site->detail = $request->detail;
         $site->started_time = $request->started_time;
         $site->end_time = $request->end_time;
-
+        $site->title = $request->site_name;
+        $site->start = $request->started_at;
+        $site->color = $request->textColor;
         $site->save();
         $site_list = Site::all();
         return view('site_list',[
@@ -90,7 +93,7 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SiteData $request, $id)
     {
         $list = new Site;
         $site = $list->find($id);
@@ -99,7 +102,7 @@ class ResourceController extends Controller
         // foreach($columns as $column){
         //     $list->$column = $request->$column;
         // }
-        $site->id = $request->id;
+        
         $site->site_name = $request->site_name;
         $site->rep_name = $request->rep_name;
         $site->started_at = $request->started_at;
@@ -107,6 +110,9 @@ class ResourceController extends Controller
         $site->detail = $request->detail;
         $site->started_time = $request->started_time;
         $site->end_time = $request->end_time;
+        $site->title = $request->site_name;
+        $site->start = $request->started_at;
+        $site->color = $request->textColor;
 
         $site->save();
         return redirect('resource/create');

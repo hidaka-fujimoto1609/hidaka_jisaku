@@ -61,7 +61,7 @@ class PersonalController extends Controller
         $accept->memo =  $request->memo;
         $accept->title = $site->site_name;
         $accept->start = $site->started_at;
-        $accept->textColor = '#47e160';
+        $accept->color = $request->textColor;
         // $site->site_name = $request->site_name;
         // $site->rep_name = $request->rep_name;
         // $site->started_at = $request->started_at;

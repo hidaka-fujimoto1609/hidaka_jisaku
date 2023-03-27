@@ -4,6 +4,17 @@
             <div class="modal-header1">
                 <h5 class="modal-title">依頼追加</h5>
             </div>
+            <div class='panel-body'>
+                            @if($errors->any())
+                            <div class='alert alert-danger'>
+                                <ul>
+                                    @foreach($errors->all() as $message)
+                                    <li>{{$message}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                        </div> 
 <form action="{{route('member.store')}}" method="post" enctype="multipart/form-data">
 @csrf
 
@@ -22,5 +33,4 @@
 </div> 
 </form>
 </div>
-    
 @endsection

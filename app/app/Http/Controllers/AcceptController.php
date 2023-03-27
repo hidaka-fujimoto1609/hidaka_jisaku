@@ -30,7 +30,8 @@ class AcceptController extends Controller
     public function create()
     {
         $accept = new Accept;
-        $accept_with_site = $accept->with('site')->where('user_id',Auth::id())->get();
+        $accept_with_site = $accept->with('site')->where('user_id',Auth::id())->where('is_accept',NULL)->get();
+    
         //dd($accept_with_site);
 
     //    if($accept_with_site->is_accept==null){
@@ -88,7 +89,15 @@ class AcceptController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $accept = new Accept;
+
+        $accepts = $accept->find($id);
+
+        if($accepts->is_accept==1){
+             return redirect('accepts');
+        }
+
+
     }
 
     /**

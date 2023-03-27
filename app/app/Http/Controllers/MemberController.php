@@ -8,6 +8,8 @@ use App\Personal;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\UserData;
+
 class MemberController extends Controller
 {
     /**
@@ -17,7 +19,16 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('general_members');
+        $personal = Personal::where('user_id',Auth::id())->get();
+        //dd($personal);
+        if($personal->isEmpty()){
+            return view('general_members');
+        }else{
+            return view('members',[
+                'personals'=>$personal
+            ]);
+        }
+        
     }
 
     /**
@@ -27,7 +38,10 @@ class MemberController extends Controller
      */
     public function create()
     {
-        
+        $personal = Personal::where('user_id',Auth::id())->get();
+        return view('members',[
+            'personals'=>$personal
+        ]);
     }
 
     /**
@@ -36,14 +50,16 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserData $request)
     {
-        $dir = 'images';
+        //dd($request->file('image_path'));
+       
+        $dir = 'images';   
         $file_name = $request->file('image_path')->getClientOriginalName();
         $request->file('image_path')->storeAs('public/images' , $file_name);
        
         $personal = new Personal;
-        $personal->user_id = 1;
+        $personal->user_id = Auth::id();
         $personal->birth = $request->birth;
         $personal->department_name = $request->department_name;
         $personal->health_check_date = $request->health_check_date;
@@ -51,7 +67,7 @@ class MemberController extends Controller
         $personal->image_path = $file_name;
 
         $personal->save();
-        return redirect('/');
+        return redirect('member');
     }
 
     /**
@@ -83,9 +99,28 @@ class MemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserData $request, int $id)
     {
-        //
+        $dir = 'images';
+        $file_name = $request->file('image_path')->getClientOriginalName();
+        $request->file('image_path')->storeAs('public/images' , $file_name);
+        
+        $member = new Personal;
+        //$member->user_id = Auth::id();
+        
+        $personal = $member->find($id);
+        
+        //dd($member);
+        $personal->birth = $request->birth;
+        $personal->department_name = $request->department_name;
+        $personal->health_check_date = $request->health_check_date;
+        $personal->contents = $request->contents;
+        $personal->image_path = $file_name;
+        
+
+        $personal->save();
+
+        return redirect('member');
     }
 
     /**

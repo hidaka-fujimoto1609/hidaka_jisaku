@@ -13,7 +13,7 @@ class UserData extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UserData extends FormRequest
     public function rules()
     {
         return [
-            //
+            'birth'=>'required|date',
+            'department_name'=>'required|max:100',
+            'health_check_date'=>'required|date',
+            'contents'=>'required',
+            'image_path'=>'required',
         ];
     }
 }

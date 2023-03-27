@@ -1,10 +1,11 @@
-@extends('layouts.admin_home')
+@extends('layouts.app')
 @section('content')
 
 
 
-
+<div class="d-flex justify-content-center">
 <h4 class="gradation02 mb-5">人員リスト</h4>
+</div>
 <div class="d-flex justify-content-center">
 <form method="get" action="{{ route('search.index') }}">
     <input type="search" placeholder="担当部署を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
@@ -50,18 +51,19 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title">シフト依頼</h5>
                                         
+                                        
                                     </div>
                         
                                     <form action="{{route('personal.store')}}" method="post">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <input name="id" value="{{$personal->id}}" type="hidden">
+                                                <input name="id" value="{{$personal->user_id}}" type="hidden">
                                             <label>現場名</label>
                                                     <select name='site_id' class='form-control'>
                                                         <label>現場名</label>
                                                         @foreach($sites as $site)
-                                                        <option value="{{$site['id']}}">現場名:{{ $site['site_name']}},開始日:{{ $site['started_at']}}</option>
+                                                        <option value="{{$site['id']}}">現場名:{{ $site['site_name']}},           開始日:{{ $site['started_at']}}</option>
                                                         
                                                         @endforeach
                                                     </select>
@@ -69,7 +71,11 @@
                                             <div class="form-group">
                                                 <label for='memo' class='mt-2'>備考欄</label>
                                                 <textarea class='form-control' name='memo'></textarea>
-                                            </div>                   
+                                            </div>     
+                                            <div class="form-group">
+                                                <label>カラー</label><br>
+                                                <input type="color" name="textColor" id="color" class="">
+                                            </div>              
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>

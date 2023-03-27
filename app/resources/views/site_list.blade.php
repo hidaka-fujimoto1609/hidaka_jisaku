@@ -1,6 +1,6 @@
-@extends('layouts.admin_home')
+@extends('layouts.app')
 @section('content')
-
+@can ('admin_only')
 <!--<div class="d-flex justify-content-center">
     <h4 class="mx-2">現場を登録</h4>
     <button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button>
@@ -12,7 +12,7 @@
                 <h5 class="modal-title">現場を登録</h5>
             </div>
 
-            
+               
             <form action="{{route('resource.store')}}" method="post">
                 @csrf
                 <div class="modal-body">
@@ -46,7 +46,11 @@
                     
                     <div class="form-group">
                         <label for='detail' class='mt-2'>現場詳細</label>
-                        <textarea class='form-control' name='detail'></textarea>
+                        <textarea class='form-control' name='detail' value="{{ old('detail')}}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>カラー</label><br>
+                        <input type="color" name="textColor" id="color" class="">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -72,6 +76,24 @@
     <h4 class="gradation02 mb-5">現場一覧</h4>
 </div>
 
+<div class="d-flex justify-content-center mb-5 ">
+    <h5 class=''>現場を追加する</h5>
+    <button type="button" id="btn1" class="btn btn-primary " data-toggle="modal" data-target="#testModal">追加</button>
+</div>
+
+<div class='panel-body d-flex justify-content-center'>
+    @if($errors->any())
+    <div class='alert alert-danger'>
+        <ul>
+            @foreach($errors->all() as $message)
+            <li>{{$message}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+</div>
+
+
 
 <div class="d-flex justify-content-center">
  <div class="col-5 ml-3">
@@ -85,7 +107,7 @@
                  <th>開始時間</th>
                  <th>終了時間</th>
                  <th>詳細</th>
-                 <th><button type="button" id="btn1" class="btn btn-primary mb-12" data-toggle="modal" data-target="#testModal">追加</button></th>
+                 <th></th>
              </tr>
          </thead>
          <tbody>
@@ -117,6 +139,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">現場を編集</h5>
+                            </div>
                                 <form action="{{route('resource.update',$site->id)}}" method="post">
                                     @method('patch')
                                 @csrf
@@ -153,6 +176,10 @@
                                         <label for='detail' class='mt-2'>現場詳細</label>
                                         <textarea class='form-control'value="{{$site['detail']}}"  name='detail'></textarea>
                                     </div>
+                                    <div class="form-group">
+                                        <label>カラー</label><br>
+                                        <input type="color" name="textColor" id="color" class="">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
@@ -173,8 +200,47 @@
  </div>
 </div>
 
+@elsecan('user_only')
+<div class="d-flex justify-content-center">
+ <div class="col-5 ml-3">
+     <table class="table table-striped table-hover">
+         <thead>
+             <tr>
+                 <th>現場名</th>
+                 <th>担当者名</th>
+                 <th>開始日</th>
+                 <th>住所</th>
+                 <th>開始時間</th>
+                 <th>終了時間</th>
+                 <th>詳細</th>
+                 <th></th>
+             </tr>
+         </thead>
+         <tbody>
+         @foreach($sites as $site)
+             <tr>
+                <td>{{$site['site_name']}}</td>
+                
+                <td>{{$site['rep_name']}}</td>
+               
+                <td>{{$site['started_at']}}</td>
+
+                <td>{{$site['address']}}</td>
+
+                <td>{{$site['started_time']}}</td>
+
+                <td>{{$site['end_time']}}</td>
+
+                <td>{{$site['detail']}}</td>
+            </tr>
+            @endforeach
+         </tbody>
+     </table>
+ </div>
+</div>
 
 
+@endcan
 @endsection
 
 

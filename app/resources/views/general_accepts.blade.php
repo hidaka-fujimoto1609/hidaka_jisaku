@@ -1,6 +1,7 @@
-依頼受託フォーム
 @extends('layouts.app')
 @section('content')
+
+@if($requests !== [])
 </table>
 <div class="d-flex justify-content-center">
     <h4 class="gradation02 mb-5">依頼一覧</h4>
@@ -10,7 +11,13 @@
      <table class="table table-striped table-hover">
          <thead>
              <tr>
-    
+             <th>担当者名</th> 
+             <th>現場名</th> 
+             <th>開始日</th> 
+             <th>住所</th> 
+             <th>開始時間</th> 
+             <th>終了時間</th> 
+             <th>詳細</th> 
              </tr>
          </thead>
          <tbody>
@@ -30,15 +37,19 @@
 
                 <td>{{$site->site->memo}}</td>
 
+                <td>
+                <a class="btn btn-primary mb-12" href="{{route('acceptssite',['id'=>$site['id']])}}" >承認</a>
+                <a class="btn btn-primary mb-12" href="{{route('rejected',['id'=>$site['id']])}}" >拒否</a>
 
-                <td><a href="" class="text-decoration-none">承認</a>
-                <button type="button" id="detailbtn1" class="btn btn-primary mb-12" >拒否</button></td>
             </tr>
             @endforeach
          </tbody>
      </table>
  </div>
 </div>
+@else
+依頼されている案件はありません。
+@endif
 @endsection
 
 

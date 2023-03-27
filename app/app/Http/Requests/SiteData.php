@@ -24,7 +24,13 @@ class SiteData extends FormRequest
     public function rules()
     {
         return [
-            //
+        'site_name'=>'required|max:200',
+        'rep_name'=>'required|max:200',
+        'started_at'=>'required|date',
+        'address'=>'required|max:200',
+        'detail'=>'max:200',
+        'started_time' => 'required|date_format:H:i|',
+        'end_time' => 'required|date_format:H:i|',
         ];
     }
 }

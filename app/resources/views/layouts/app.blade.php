@@ -81,19 +81,30 @@
                                 </div>
                             </li>
                         @endguest
-                        <button class='btn1'  type="button"   onclick="location.href='{{route('member.index')}}'"> 依頼受託</button>
-                        
+                        <!--<button class='btn1'  type="button"   onclick="location.href='{{route('member.index')}}'"> 依頼受託</button>-->
 
                     <!--<button type="button" class="btn btn-outline-primary" style="margin-rigth:30rem"><a href="{{route('resource.create')}}">進行中現場リスト</a></button>
                     <button type="button" class="btn btn-outline-primary" ><a href="{{route('personallist.index')}}">人員</a></button>-->
+                    @can ('admin_only')
+                    <button  class="btn btn-outline-primary"  type="button"  onclick="location.href='{{route('resource.create')}}'">進行中現場リスト</button>
+                    <button  class="btn btn-outline-primary"  type="button"  onclick="location.href='{{route('personallist.index')}}'">人員</button>
+                    @elsecan('user_only')
+                    <button class='btn btn-outline-primary'  type="button"   onclick="location.href='{{route('accept.create')}}'"> 依頼受託</button>
+
+                    <button  class="btn btn-outline-primary"  type="button"  onclick="location.href='{{route('resource.create')}}'">進行中現場リスト</button>
+
+                    <button  class="btn btn-outline-primary"  type="button"  onclick="location.href='{{route('member.index')}}'">会員情報</button>
+                    @endcan
                     </ul>
                 </div>
             </div>
         </nav>
+    </div>
 
+    
         <main class="py-4">
+       
             @yield('content')
         </main>
-    </div>
 </body>
 </html>

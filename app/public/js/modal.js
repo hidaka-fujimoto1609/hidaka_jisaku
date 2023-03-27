@@ -28,5 +28,10 @@ $(function(){
         $(find).modal();
     });
 
+    $('.membermodal').on('click',function(event){
+        console.log(123);
+        let find=$(this).find('#memberModal1');
+        $(find).modal();
+    });
     
 })
