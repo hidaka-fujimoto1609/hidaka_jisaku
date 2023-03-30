@@ -7,7 +7,7 @@
 <h4 class="gradation02 mb-5">人員リスト</h4>
 </div>
 <div class="d-flex justify-content-center">
-<form method="get" action="{{ route('search.index') }}">
+<form method="get" action="{{ route('search.index') }}" >
     <input type="search" placeholder="担当部署を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
    
         <button type="submit">検索</button> 

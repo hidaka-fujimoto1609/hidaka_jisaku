@@ -27,7 +27,7 @@
 <body>
     
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-secondary shadow-sm ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                 KENTIKU管理
@@ -91,7 +91,7 @@
                     @elsecan('user_only')
                     <button class='btn btn-outline-primary'  type="button"   onclick="location.href='{{route('accept.create')}}'"> 依頼受託</button>
 
-                    <button  class="btn btn-outline-primary"  type="button"  onclick="location.href='{{route('resource.create')}}'">進行中現場リスト</button>
+                    <!--<button  class="btn btn-outline-primary"  type="button"  onclick="location.href='{{route('resource.create')}}'">進行中現場リスト</button>-->
 
                     <button  class="btn btn-outline-primary"  type="button"  onclick="location.href='{{route('member.index')}}'">会員情報</button>
                     @endcan

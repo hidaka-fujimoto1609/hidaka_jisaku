@@ -1,14 +1,9 @@
 @extends('layouts.app')
 @section('content')
 @can ('admin_only')
-  <span>管理者にだけ表示させる</span>
-<div class="container">
-     <!--<a href="{{route('resource.index')}}">進行中現場</a>-->
-                <!--<a href="{{route('resource.create')}}">進行中現場リスト</a>-->
-                <!--<button type="button" class="btn btn-outline-primary" ><a href="{{route('resource.create')}}">進行中現場リスト</a></button>-->
-                <!--<a href="{{route('personal.index')}}">人員リスト</a>-->
-                <!--<button type="button" class="btn btn-outline-primary" ><a href="{{route('personallist.index')}}">人員</a></button>-->
-    
+  
+<div class="d-flex justify-content-center">
+<h2>進行中現場カレンダー</h2>
 </div>
 
 <div class="m-auto w-50 m-5 p-5">

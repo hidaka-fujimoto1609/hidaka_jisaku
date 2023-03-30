@@ -35,11 +35,11 @@
 
                 <td>{{$site->site->end_time}}</td>
 
-                <td>{{$site->site->memo}}</td>
+                <td>{{$site->memo}}</td>
 
                 <td>
-                <a class="btn btn-primary mb-12" href="{{route('acceptssite',['id'=>$site['id']])}}" >承認</a>
-                <a class="btn btn-primary mb-12" href="{{route('rejected',['id'=>$site['id']])}}" >拒否</a>
+                <a class="btn btn-primary mb-12"  href="{{route('acceptssite',['id'=>$site['id']])}}" >承認</a>
+                <a class="btn btn-danger  mb-12" href="{{route('rejected',['id'=>$site['id']])}}" >拒否</a>
 
             </tr>
             @endforeach

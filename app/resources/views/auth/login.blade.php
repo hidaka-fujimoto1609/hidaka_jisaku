@@ -2,10 +2,10 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center" >{{ __('ログイン') }}</div>
+                <div class="card-header text-center bg-primary text-white" >{{ __('建築管理ログイン') }}</div>
 
                 <div class="card-body bg-secondary">
                     <form method="POST" action="{{ route('login') }}">
@@ -72,10 +72,7 @@
 </div>
 
 <style>
-    .card-header{
-    background:;-webkit-linear-gradient(left, #ff26fb, #00b3ff);
-    cursor: pointer;
-    }
+    
 </style>
 @endsection
 
